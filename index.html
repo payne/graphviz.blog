@@ -1,128 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>TM Today</title>
+<html>
+<head>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-codemirror/index.js"></script>
+</head>
+<body>
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-              crossorigin="anonymous">
-        <link href="https://cdn.jsdelivr.net/gh/fontenele/bootstrap-navbar-dropdowns@5.0.2/dist/css/bootstrap-navbar-dropdowns.min.css"
-              rel="stylesheet">
+  <wc-codemirror>
+    <script type="wc-content">
+    # Place the cursor inside "graph" to get some refactoring options
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-        <div class="navbar navbar-expand-md navbar-dark bg-dark mb-4" role="navigation">
-            <a class="navbar-brand" href="#" onClick="showAll(); return false;">TM Today</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" 
-                          onClick="showAll(); return false;"
-                          href="#">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                          onClick="showSpeakers(); return false;"
-                          href="http://fontenele.github.io/bootstrap-navbar-dropdowns/"
-                           target="_blank">Speakers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                          onClick="showDates(); return false;"
-                          href="http://fontenele.github.io/bootstrap-navbar-dropdowns/"
-                           target="_blank">Meeting Dates</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                          onClick="showQrCode(); return false;"
-                          href="TMToday1.png"
-                          target="_blank">QRCode</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                          onClick="showVersion(); return false;"
-                          href="https://github.com/payne/TMtoday1"
-                           target="_blank">Version: 0.02: 2023 March 26</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                          href="https://github.com/payne/TMtoday1"
-                           target="_blank">github (source code)</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+graph {
 
-        <main role="main" class="container">
-          <div class="jumbotron" id="all">
-	    <h2 id="list_all_meeting_date">meeting date</h2>
-            <h2>
-            <ul id="list_all">
-              <!-- Gets filled in by script.js -->
-            </ul>
-            </h2>
-          </div>
-          <div class="jumbotron" id="speakers" hidden>
-	    <h2 id="speakers_meeting_date">meeting date</h2>
-            <h2>
-            <ul id="speakers_all">
-              <!-- Gets filled in by script.js -->
-            </ul>
-            </h2>
-          </div>
-          <div hidden id="meeting_dates">
-            <h2>
-              <label for="meeting_date_select">Meeting Date:</label>
-              <select id="meeting_date_select" onchange="dateChange()">
-                <!-- Gets filled in by script.js -->
-              </select>
-            </h2>
-          </div>
-          <div class="jumbotron" id="qrcode" hidden>
-            <img src="TMToday1.png" alt="QR Code" width="400" height="500">
-          </div>
-          <div class="jumbotron" id="version" hidden>
-            <h2>
-              Version: 0.02: 2023 March 26
-	      <ul>
-		      <li>BUG: Need to set meeting date and reset it to get the 3/29 :-(</li>
-		      <li>Meeting data starts March 29, 2023</li>
-		      <li>Holds data through May 31, 2023</li>
-	      </ul>
-            </h2>
-          </div>
-        </main>
+    # To refactor nodes, place the cursor left to a node name
+    a -- b
+    a -- c;
+    a -- d;
+    d -- e;
+    e -- f;
+    e -- g;
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-                crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/gh/fontenele/bootstrap-navbar-dropdowns@5.0.2/dist/js/bootstrap-navbar-dropdowns.min.js"></script>
-        <script>
-            $('.navbar').navbarDropdown({trigger: 'mouseover'});
-        </script>
-    </body>
-    <script src="script.js"></script>
+    # Hover over color names to get a color picker
+    b -- b [color=green]
+    b -- d [color="#ff0000"];
+
+    # Get completion when assigning a shape or color
+    b [shape=box, color=yellow];
+
+    a; # You can remove optional ; by placing the cursor left to a semicolon
+}
+
+</script>
+
+  </wc-code-mirror>
+
+</body>
 </html>
-
